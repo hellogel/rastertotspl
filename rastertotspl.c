@@ -250,7 +250,7 @@ static void output_bitmap_data(FILE *output, cups_page_header2_t *header,
     unsigned int width_bytes;
     unsigned char *bitmap_line;
 
-    /* Calculate width in bytes (8 pixels per byte) */
+    /* Calculate width in bytes (8 pixels per byte) - критично важливо! */
     width_bytes = (header->cupsWidth + 7) / 8;
 
     /* Allocate bitmap line buffer */
@@ -282,37 +282,54 @@ static void output_bitmap_data(FILE *output, cups_page_header2_t *header,
         /* Convert pixels to bitmap format */
         for (x = 0; x < header->cupsWidth; x++)
         {
-            unsigned char pixel;
+            unsigned char pixel = 0;
 
             byte_pos = x / 8;
-            bit = 7 - (x % 8); /* MSB is leftmost pixel */
+            bit = 7 - (x % 8); /* MSB is leftmost pixel для TSPL */
 
-            /* Get pixel value */
+            /* Get pixel value and convert to binary */
             if (header->cupsBitsPerPixel == 1)
             {
-                /* Monochrome */
+                /* Monochrome - читаємо з CUPS формату */
                 unsigned int src_byte = x / 8;
                 unsigned int src_bit = 7 - (x % 8);
-                pixel = (line_buffer[src_byte] >> src_bit) & 1;
+                unsigned char cups_pixel = (line_buffer[src_byte] >> src_bit) & 1;
+                /* Інвертуємо: CUPS 0=чорний,1=білий → TSPL 1=чорний,0=білий */
+                pixel = cups_pixel ? 0 : 1;
             }
             else if (header->cupsBitsPerPixel == 8)
             {
-                /* Grayscale - convert to monochrome */
-                pixel = (line_buffer[x] < 128) ? 1 : 0;
+                /* Grayscale - поріг 128 */
+                unsigned char gray_value = line_buffer[x];
+                /* Темні пікселі стають чорними в TSPL */
+                pixel = (gray_value < 128) ? 1 : 0;
+            }
+            else if (header->cupsBitsPerPixel == 24)
+            {
+                /* RGB - беремо середнє */
+                unsigned int offset = x * 3;
+                if (offset + 2 < header->cupsBytesPerLine) {
+                    unsigned int r = line_buffer[offset];
+                    unsigned int g = line_buffer[offset + 1];
+                    unsigned int b = line_buffer[offset + 2];
+                    unsigned int luminance = (r * 299 + g * 587 + b * 114) / 1000;
+                    pixel = (luminance < 128) ? 1 : 0;
+                }
             }
             else
             {
-                /* Other formats - assume dark pixels are non-zero */
+                /* Інші формати - загальний підхід */
                 int bytes_per_pixel = header->cupsBitsPerPixel / 8;
-                int offset = x * bytes_per_pixel;
-                pixel = 0;
-                for (int i = 0; i < bytes_per_pixel; i++)
+                if (bytes_per_pixel > 0)
                 {
-                    if (line_buffer[offset + i] > 0)
+                    unsigned int offset = x * bytes_per_pixel;
+                    unsigned int sum = 0;
+                    for (int i = 0; i < bytes_per_pixel && (offset + i) < header->cupsBytesPerLine; i++)
                     {
-                        pixel = 1;
-                        break;
+                        sum += line_buffer[offset + i];
                     }
+                    unsigned int average = sum / bytes_per_pixel;
+                    pixel = (average < 128) ? 1 : 0;
                 }
             }
 
