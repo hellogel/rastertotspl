@@ -1,0 +1,161 @@
+*PPD-Adobe: "4.3"
+*FormatVersion: "4.3"
+*FileVersion: "1.0"
+*LanguageVersion: English
+*LanguageEncoding: ISOLatin1
+*PCFileName: "TSPL.PPD"
+*Product: "(TSPL Label Printer)"
+*Manufacturer: "Generic"
+*ModelName: "TSPL Label Printer"
+*ShortNickName: "TSPL Label"
+*NickName: "Generic TSPL Label Printer"
+*PSVersion: "(3010.000) 0"
+*LanguageLevel: "3"
+*ColorDevice: False
+*DefaultColorSpace: Gray
+*FileSystem: False
+*Throughput: "1"
+*LandscapeOrientation: Plus90
+*TTRasterizer: Type42
+
+*% CUPS-specific attributes
+*cupsVersion: 2.3
+*cupsModelNumber: 0
+*cupsManualCopies: False
+*cupsFilter: "application/vnd.cups-raster 0 rastertotspl"
+
+*% Default page size (adjust for your label size)
+*DefaultPageSize: Label50x30mm
+*DefaultPageRegion: Label50x30mm
+*DefaultImageableArea: Label50x30mm
+*DefaultPaperDimension: Label50x30mm
+
+*% Paper sizes for common label dimensions
+*OpenUI *PageSize/Media Size: PickOne
+*OrderDependency: 10 AnySetup *PageSize
+*DefaultPageSize: Label50x30mm
+
+*PageSize Label20x15mm/20mm x 15mm: "<</PageSize[56.7 42.5]/ImagingBBox null>>setpagedevice"
+*PageSize Label25x15mm/25mm x 15mm: "<</PageSize[70.9 42.5]/ImagingBBox null>>setpagedevice"
+*PageSize Label30x20mm/30mm x 20mm: "<</PageSize[85.0 56.7]/ImagingBBox null>>setpagedevice"
+*PageSize Label40x25mm/40mm x 25mm: "<</PageSize[113.4 70.9]/ImagingBBox null>>setpagedevice"
+*PageSize Label50x30mm/50mm x 30mm: "<</PageSize[141.7 85.0]/ImagingBBox null>>setpagedevice"
+*PageSize Label60x40mm/60mm x 40mm: "<</PageSize[170.1 113.4]/ImagingBBox null>>setpagedevice"
+*PageSize Label70x50mm/70mm x 50mm: "<</PageSize[198.4 141.7]/ImagingBBox null>>setpagedevice"
+*PageSize Label100x70mm/100mm x 70mm: "<</PageSize[283.5 198.4]/ImagingBBox null>>setpagedevice"
+
+*CloseUI: *PageSize
+
+*OpenUI *PageRegion/Media Size: PickOne
+*OrderDependency: 10 AnySetup *PageRegion
+*DefaultPageRegion: Label50x30mm
+
+*PageRegion Label20x15mm/20mm x 15mm: "<</PageSize[56.7 42.5]/ImagingBBox null>>setpagedevice"
+*PageRegion Label25x15mm/25mm x 15mm: "<</PageSize[70.9 42.5]/ImagingBBox null>>setpagedevice"
+*PageRegion Label30x20mm/30mm x 20mm: "<</PageSize[85.0 56.7]/ImagingBBox null>>setpagedevice"
+*PageRegion Label40x25mm/40mm x 25mm: "<</PageSize[113.4 70.9]/ImagingBBox null>>setpagedevice"
+*PageRegion Label50x30mm/50mm x 30mm: "<</PageSize[141.7 85.0]/ImagingBBox null>>setpagedevice"
+*PageRegion Label60x40mm/60mm x 40mm: "<</PageSize[170.1 113.4]/ImagingBBox null>>setpagedevice"
+*PageRegion Label70x50mm/70mm x 50mm: "<</PageSize[198.4 141.7]/ImagingBBox null>>setpagedevice"
+*PageRegion Label100x70mm/100mm x 70mm: "<</PageSize[283.5 198.4]/ImagingBBox null>>setpagedevice"
+
+*CloseUI: *PageRegion
+
+*% Imageable areas for each paper size
+*DefaultImageableArea: Label50x30mm
+
+*ImageableArea Label20x15mm/20mm x 15mm: "0 0 56.7 42.5"
+*ImageableArea Label25x15mm/25mm x 15mm: "0 0 70.9 42.5"
+*ImageableArea Label30x20mm/30mm x 20mm: "0 0 85.0 56.7"
+*ImageableArea Label40x25mm/40mm x 25mm: "0 0 113.4 70.9"
+*ImageableArea Label50x30mm/50mm x 30mm: "0 0 141.7 85.0"
+*ImageableArea Label60x40mm/60mm x 40mm: "0 0 170.1 113.4"
+*ImageableArea Label70x50mm/70mm x 50mm: "0 0 198.4 141.7"
+*ImageableArea Label100x70mm/100mm x 70mm: "0 0 283.5 198.4"
+
+*% Physical paper dimensions
+*DefaultPaperDimension: Label50x30mm
+
+*PaperDimension Label20x15mm/20mm x 15mm: "56.7 42.5"
+*PaperDimension Label25x15mm/25mm x 15mm: "70.9 42.5"
+*PaperDimension Label30x20mm/30mm x 20mm: "85.0 56.7"
+*PaperDimension Label40x25mm/40mm x 25mm: "113.4 70.9"
+*PaperDimension Label50x30mm/50mm x 30mm: "141.7 85.0"
+*PaperDimension Label60x40mm/60mm x 40mm: "170.1 113.4"
+*PaperDimension Label70x50mm/70mm x 50mm: "198.4 141.7"
+*PaperDimension Label100x70mm/100mm x 70mm: "283.5 198.4"
+
+*% Resolution
+*DefaultResolution: 203dpi
+*OpenUI *Resolution/Print Quality: PickOne
+*OrderDependency: 10 AnySetup *Resolution
+*DefaultResolution: 203dpi
+*Resolution 203dpi/203 DPI: "<</HWResolution[203 203]/cupsBitsPerColor 1/cupsColorOrder 3/cupsColorSpace 3>>setpagedevice"
+*CloseUI: *Resolution
+
+*% Print density option
+*OpenUI *TSPLDensity/Print Density: PickOne
+*OrderDependency: 10 AnySetup *TSPLDensity
+*DefaultTSPLDensity: 8
+*TSPLDensity 1/Light (1): ""
+*TSPLDensity 2/Light (2): ""
+*TSPLDensity 3/Light (3): ""
+*TSPLDensity 4/Light (4): ""
+*TSPLDensity 5/Light (5): ""
+*TSPLDensity 6/Medium (6): ""
+*TSPLDensity 7/Medium (7): ""
+*TSPLDensity 8/Medium (8): ""
+*TSPLDensity 9/Medium (9): ""
+*TSPLDensity 10/Medium (10): ""
+*TSPLDensity 11/Dark (11): ""
+*TSPLDensity 12/Dark (12): ""
+*TSPLDensity 13/Dark (13): ""
+*TSPLDensity 14/Dark (14): ""
+*TSPLDensity 15/Dark (15): ""
+*CloseUI: *TSPLDensity
+
+*% Print speed option
+*OpenUI *TSPLSpeed/Print Speed: PickOne
+*OrderDependency: 10 AnySetup *TSPLSpeed
+*DefaultTSPLSpeed: 4
+*TSPLSpeed 1/Slow (1): ""
+*TSPLSpeed 2/Slow (2): ""
+*TSPLSpeed 3/Medium (3): ""
+*TSPLSpeed 4/Medium (4): ""
+*TSPLSpeed 5/Fast (5): ""
+*TSPLSpeed 6/Fast (6): ""
+*CloseUI: *TSPLSpeed
+
+*% Font information
+*DefaultFont: Courier
+*Font AvantGarde-Book: Standard "(1.05)" Standard ROM
+*Font AvantGarde-BookOblique: Standard "(1.05)" Standard ROM
+*Font AvantGarde-Demi: Standard "(1.05)" Standard ROM
+*Font AvantGarde-DemiOblique: Standard "(1.05)" Standard ROM
+*Font Bookman-Demi: Standard "(1.05)" Standard ROM
+*Font Bookman-DemiItalic: Standard "(1.05)" Standard ROM
+*Font Bookman-Light: Standard "(1.05)" Standard ROM
+*Font Bookman-LightItalic: Standard "(1.05)" Standard ROM
+*Font Courier: Standard "(1.05)" Standard ROM
+*Font Courier-Bold: Standard "(1.05)" Standard ROM
+*Font Courier-BoldOblique: Standard "(1.05)" Standard ROM
+*Font Courier-Oblique: Standard "(1.05)" Standard ROM
+*Font Helvetica: Standard "(1.05)" Standard ROM
+*Font Helvetica-Bold: Standard "(1.05)" Standard ROM
+*Font Helvetica-BoldOblique: Standard "(1.05)" Standard ROM
+*Font Helvetica-Oblique: Standard "(1.05)" Standard ROM
+*Font NewCenturySchlbk-Bold: Standard "(1.05)" Standard ROM
+*Font NewCenturySchlbk-BoldItalic: Standard "(1.05)" Standard ROM
+*Font NewCenturySchlbk-Italic: Standard "(1.05)" Standard ROM
+*Font NewCenturySchlbk-Roman: Standard "(1.05)" Standard ROM
+*Font Palatino-Bold: Standard "(1.05)" Standard ROM
+*Font Palatino-BoldItalic: Standard "(1.05)" Standard ROM
+*Font Palatino-Italic: Standard "(1.05)" Standard ROM
+*Font Palatino-Roman: Standard "(1.05)" Standard ROM
+*Font Symbol: Special "(001.005)" Special ROM
+*Font Times-Bold: Standard "(1.05)" Standard ROM
+*Font Times-BoldItalic: Standard "(1.05)" Standard ROM
+*Font Times-Italic: Standard "(1.05)" Standard ROM
+*Font Times-Roman: Standard "(1.05)" Standard ROM
+*Font ZapfChancery-MediumItalic: Standard "(1.05)" Standard ROM
+*Font ZapfDingbats: Special "(001.005)" Special ROM
