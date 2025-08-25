@@ -308,7 +308,8 @@ static void output_bitmap_data(FILE *output, cups_page_header2_t *header,
             {
                 /* RGB - беремо середнє */
                 unsigned int offset = x * 3;
-                if (offset + 2 < header->cupsBytesPerLine) {
+                if (offset + 2 < header->cupsBytesPerLine)
+                {
                     unsigned int r = line_buffer[offset];
                     unsigned int g = line_buffer[offset + 1];
                     unsigned int b = line_buffer[offset + 2];
@@ -341,10 +342,7 @@ static void output_bitmap_data(FILE *output, cups_page_header2_t *header,
         }
 
         /* Output bitmap line as hex */
-        for (x = 0; x < width_bytes; x++)
-        {
-            fprintf(output, "%02X", bitmap_line[x]);
-        }
+        fwrite(bitmap_line, 1, width_bytes, output);
     }
 
     fprintf(output, "\n");
