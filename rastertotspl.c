@@ -295,13 +295,13 @@ static void output_bitmap_data(FILE *output, cups_page_header2_t *header,
                 unsigned int src_bit = 7 - (x % 8);
                 unsigned char cups_pixel = (line_buffer[src_byte] >> src_bit) & 1;
                 /* CUPS: 0=чорний,1=білий → TSPL: 1=чорний,0=білий */
-                pixel = cups_pixel ? 1 : 0;
+                pixel = cups_pixel ? 0 : 1;
             }
             else if (header->cupsBitsPerPixel == 8)
             {
                 /* Grayscale - поріг 128 */
                 unsigned char gray_value = line_buffer[x];
-                /* Темні пікселі стають чорними в TSPL */
+                /* Світлі пікселі (>128) = білий фон (0), темні (<128) = чорний текст (1) */
                 pixel = (gray_value < 128) ? 1 : 0;
             }
             else if (header->cupsBitsPerPixel == 24)
@@ -314,6 +314,7 @@ static void output_bitmap_data(FILE *output, cups_page_header2_t *header,
                     unsigned int g = line_buffer[offset + 1];
                     unsigned int b = line_buffer[offset + 2];
                     unsigned int luminance = (r * 299 + g * 587 + b * 114) / 1000;
+                    /* Світлі кольори = білий фон (0), темні = чорний текст (1) */
                     pixel = (luminance < 128) ? 1 : 0;
                 }
             }
