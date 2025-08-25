@@ -1,0 +1,40 @@
+*PPD-Adobe: "4.3"
+*FormatVersion: "4.3"
+*FileVersion: "1.0"
+*LanguageEncoding: ISOLatin1
+*LanguageVersion: English
+*PCFileName: "RASTERTOTSPL.PPD"
+*Manufacturer: "EZPOS"
+*Product: "(EZPOS L4-W)"
+*NickName: "EZPOS L4-W (TSPL 100x100)"
+*ShortNickName: "EZPOS L4-W"
+*ModelName: "EZPOS L4-W"
+*cupsVersion: 2.3
+*cupsModelNumber: 1
+*cupsFilter: "application/vnd.cups-raster 0 rastertotspl"
+*DefaultColorSpace: Gray
+*ColorDevice: False
+*FileSystem: False
+*Throughput: "1"
+
+*OpenUI *PageSize: PickOne
+*DefaultPageSize: Custom100x100
+*PageSize Custom100x100/100x100mm: "<</PageSize[283.46 283.46]>>setpagedevice"
+*CloseUI: *PageSize
+
+*OpenUI *PageRegion: PickOne
+*DefaultPageRegion: Custom100x100
+*PageRegion Custom100x100/100x100mm: "<</PageSize[283.46 283.46]>>setpagedevice"
+*CloseUI: *PageRegion
+
+*DefaultImageableArea: Custom100x100
+*ImageableArea Custom100x100: "0 0 283.46 283.46"
+
+*DefaultPaperDimension: Custom100x100
+*PaperDimension Custom100x100: "283.46 283.46"
+
+*OpenUI *Resolution: PickOne
+*DefaultResolution: 203dpi
+*Resolution 203dpi: "<</HWResolution[203 203]>>setpagedevice"
+*CloseUI: *Resolution
+
