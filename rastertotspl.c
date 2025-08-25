@@ -294,8 +294,8 @@ static void output_bitmap_data(FILE *output, cups_page_header2_t *header,
                 unsigned int src_byte = x / 8;
                 unsigned int src_bit = 7 - (x % 8);
                 unsigned char cups_pixel = (line_buffer[src_byte] >> src_bit) & 1;
-                /* Інвертуємо: CUPS 0=чорний,1=білий → TSPL 1=чорний,0=білий */
-                pixel = cups_pixel ? 0 : 1;
+                /* CUPS: 0=чорний,1=білий → TSPL: 1=чорний,0=білий */
+                pixel = cups_pixel ? 1 : 0;
             }
             else if (header->cupsBitsPerPixel == 8)
             {
